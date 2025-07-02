@@ -5,7 +5,8 @@ interface AnalyticsEvent {
   category: string;
   label?: string;
   value?: number;
-  custom_parameters?: Record<string, string | number | boolean>;
+  custom_parameters?: Record<string, string | number | boolean | undefined>;
+  [key: string]: unknown; // Add index signature
 }
 
 interface UserProperties {
@@ -18,7 +19,7 @@ interface UserProperties {
 
 class Analytics {
   private isInitialized = false;
-  private queue: AnalyticsEvent[] = [];
+  private queue: (AnalyticsEvent & { timestamp: number; session_id: string; user_id?: string; page_url: string; page_title: string; referrer: string })[] = [];
   private sessionId: string;
   private userId?: string;
 
@@ -149,7 +150,7 @@ class Analytics {
         this.track({
           action: 'phone_click',
           category: 'contact',
-          label: target.closest('a')?.getAttribute('href')
+          label: target.closest('a')?.getAttribute('href') || undefined
         });
       }
 
@@ -158,7 +159,7 @@ class Analytics {
         this.track({
           action: 'email_click',
           category: 'contact',
-          label: target.closest('a')?.getAttribute('href')
+          label: target.closest('a')?.getAttribute('href') || undefined
         });
       }
 
@@ -168,7 +169,7 @@ class Analytics {
         this.track({
           action: 'navigation_click',
           category: 'navigation',
-          label: link.textContent || link.getAttribute('href')
+          label: link.textContent || link.getAttribute('href') || undefined
         });
       }
 
@@ -178,7 +179,7 @@ class Analytics {
         this.track({
           action: 'button_click',
           category: 'interaction',
-          label: button.textContent || button.getAttribute('aria-label')
+          label: button.textContent || button.getAttribute('aria-label') || undefined
         });
       }
     });
@@ -191,7 +192,7 @@ class Analytics {
       this.track({
         action: 'form_submit',
         category: 'form',
-        label: form.id || form.className
+        label: form.id || form.className || undefined
       });
     });
 
@@ -202,7 +203,7 @@ class Analytics {
         this.track({
           action: 'form_field_focus',
           category: 'form',
-          label: target.getAttribute('name') || target.getAttribute('id')
+          label: target.getAttribute('name') || target.getAttribute('id') || undefined
         });
       }
     }, true);
@@ -231,7 +232,14 @@ class Analytics {
     }
   }
 
-  private sendEvent(event: AnalyticsEvent & { timestamp: number; session_id: string; user_id?: string; page_url: string; page_title: string; referrer: string }) {
+  private sendEvent(event: AnalyticsEvent & {
+    timestamp: number;
+    session_id: string;
+    user_id?: string;
+    page_url: string;
+    page_title: string;
+    referrer: string;
+  }) {
     try {
       // Send to Google Analytics if available
       if (typeof gtag !== 'undefined') {
@@ -311,9 +319,9 @@ class Analytics {
     this.track({
       action: 'error',
       category: 'error',
-      label: error,
+      label: error || 'unknown_error',
       custom_parameters: {
-        context,
+        context: context || undefined,
         stack: new Error().stack
       }
     });

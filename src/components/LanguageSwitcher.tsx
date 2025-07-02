@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo, memo } from 'react';
 import { Globe, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { loadLanguage } from '../i18n/i18n';
@@ -8,43 +8,45 @@ const LanguageSwitcher: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const languages = [
+  // Memoize languages array to prevent recreation
+  const languages = useMemo(() => [
     { code: 'ja', name: 'Japanese', flag: '🇯🇵' },
     { code: 'th', name: 'Thai', flag: '🇹🇭' },
     { code: 'en', name: 'English', flag: '🇺🇸' },
-  ];
+  ], []);
 
-  const handleChangeLanguage = async (languageCode: string) => {
+  // Memoize language change handler
+  const handleChangeLanguage = useCallback(async (languageCode: string) => {
     setIsLoading(true);
     try {
-      // Load language resources dynamically before changing language
       await loadLanguage(languageCode);
       changeLanguage(languageCode);
       setIsOpen(false);
     } catch (error) {
       console.error(`Failed to load language ${languageCode}:`, error);
-      // Still attempt to change language even if loading fails
       changeLanguage(languageCode);
       setIsOpen(false);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [changeLanguage]);
 
-  const getCurrentLanguage = () => {
+  // Memoize current language lookup
+  const getCurrentLanguage = useCallback(() => {
     return languages.find(lang => lang.code === currentLanguage) || languages[0];
-  };
+  }, [languages, currentLanguage]);
 
-  const toggleDropdown = () => {
+  // Memoize dropdown toggle
+  const toggleDropdown = useCallback(() => {
     setIsOpen(!isOpen);
-  };
+  }, [isOpen]);
 
   return (
     <div className="relative z-50">
       <button 
         onClick={toggleDropdown}
         disabled={isLoading}
-        className="flex items-center space-x-2 text-white hover:text-accent transition-colors bg-white/10 px-3 py-1 rounded-md disabled:opacity-70 disabled:cursor-not-allowed"
+        className="flex items-center space-x-2 text-white hover:text-accent transition-colors bg-primary border border-white/30 px-3 py-1 rounded-md disabled:opacity-70 disabled:cursor-not-allowed"
       >
         {isLoading ? (
           <div className="w-4 h-4 border border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -90,4 +92,4 @@ const LanguageSwitcher: React.FC = () => {
   );
 };
 
-export default LanguageSwitcher;
+export default memo(LanguageSwitcher);

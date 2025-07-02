@@ -4,8 +4,10 @@ import { useLanguage } from '../hooks/useLanguage';
 import { CONTACT_INFO, COMMON_STYLES, SERVICE_PRICING } from '../constants';
 import { formatPhoneLink, cn } from '../utils';
 import OptimizedImage from './OptimizedImage';
-import faceImage from '../assets/images/face.png';
-import footImage from '../assets/images/foot.png';
+import faceImage from '../assets/images/face.webp';
+import footImage from '../assets/images/foot.webp';
+import thaiMassageImage from '../assets/images/thai-massage.webp';
+import oilImage from '../assets/images/oil.webp';
 
 const Services: React.FC = () => {
   const { t, fontClass } = useLanguage();
@@ -15,7 +17,7 @@ const Services: React.FC = () => {
       icon: <Heart className="w-8 h-8" />,
       name: t('services.traditional.name'),
       description: t('services.traditional.description'),
-      image: 'https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: thaiMassageImage,
       courses: [
         { duration: t('services.traditional.30min'), price: SERVICE_PRICING.traditional['30min'], time: '30分' },
         { duration: t('services.traditional.60min'), price: SERVICE_PRICING.traditional['60min'], time: '60分' },
@@ -27,7 +29,7 @@ const Services: React.FC = () => {
       icon: <Sparkles className="w-8 h-8" />,
       name: t('services.oil.name'),
       description: t('services.oil.description'),
-      image: 'https://images.pexels.com/photos/3997992/pexels-photo-3997992.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: oilImage,
       courses: [
         { duration: t('services.oil.60min'), price: SERVICE_PRICING.oil['60min'], time: '60分' },
         { duration: t('services.oil.90min'), price: SERVICE_PRICING.oil['90min'], time: '90分' },

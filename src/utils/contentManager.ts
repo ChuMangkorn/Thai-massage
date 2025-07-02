@@ -323,13 +323,14 @@ class ContentManager {
   private validateContentItem(item: unknown): item is ContentItem {
     return (
       typeof item === 'object' &&
-      typeof item.id === 'string' &&
-      typeof item.type === 'string' &&
-      typeof item.title === 'string' &&
-      typeof item.language === 'string' &&
-      typeof item.lastModified === 'number' &&
-      typeof item.isActive === 'boolean' &&
-      item.content !== undefined
+      item !== null && // Add null check
+      typeof (item as ContentItem).id === 'string' &&
+      typeof (item as ContentItem).type === 'string' &&
+      typeof (item as ContentItem).title === 'string' &&
+      typeof (item as ContentItem).language === 'string' &&
+      typeof (item as ContentItem).lastModified === 'number' &&
+      typeof (item as ContentItem).isActive === 'boolean' &&
+      (item as ContentItem).content !== undefined
     );
   }
 

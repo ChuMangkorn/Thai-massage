@@ -1,33 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import { Menu, X, Phone, MapPin, Clock } from '../icons';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '../hooks/useLanguage';
 import { CONTACT_INFO, COMMON_STYLES } from '../constants';
 import { scrollToSection, formatPhoneLink, cn } from '../utils';
-import logo from '/src/assets/images/logo.png';
+import { throttle } from '../utils/throttle';
+import logo from '/src/assets/images/logo.webp';
 
 const Header: React.FC = () => {
-  const { t, currentLanguage, fontClass } = useLanguage();
+  const { t, fontClass } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
+  // Memoize and throttle scroll handler for better performance
+  const handleScroll = useCallback(
+    throttle(() => {
       setIsScrolled(window.scrollY > 50);
-    };
+    }, 16), // ~60fps
+    []
+  );
+
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
-  const handleScrollToSection = (sectionId: string) => {
+  // Memoize section scroll handler
+  const handleScrollToSection = useCallback((sectionId: string) => {
     scrollToSection(sectionId);
     setIsMenuOpen(false);
-  };
+  }, []);
 
   return (
     <>
       {/* Top Info Bar */}
-      <div className="bg-secondary text-white py-2 px-4 text-sm z-[9999] relative">
+      <div className="fixed top-0 left-0 right-0 py-1.5 px-4 text-sm z-[9999] bg-gradient-to-r from-secondary to-primary text-white hidden sm:block">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
@@ -48,9 +55,9 @@ const Header: React.FC = () => {
       </div>
 
       {/* Main Header */}
-      <header className={`fixed top-0 left-0 right-0 z-[9998] transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg py-2' : 'bg-white/95 backdrop-blur-sm py-4'
-      }`} style={{ top: isScrolled ? '0' : '34px' }}>
+      <header className={`fixed left-0 right-0 z-[9998] transition-all duration-300 ${
+        isScrolled ? 'top-0 bg-white shadow-lg py-2' : 'top-0 sm:top-[42px] bg-white/95 backdrop-blur-sm py-4'
+      }`}>
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -65,7 +72,7 @@ const Header: React.FC = () => {
                 />
               </div>
               <div>
-                <h1 className={cn('text-xl font-bold text-text', fontClass)}>
+                <h1 className={cn('text-lg md:text-xl font-bold text-text', fontClass)}>
                   {t('hero.title')}
                 </h1>
                 
@@ -107,13 +114,18 @@ const Header: React.FC = () => {
               </a>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-md text-text hover:bg-gray-100"
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            {/* Mobile Actions */}
+            <div className="flex items-center space-x-3 lg:hidden">
+              <div className="block sm:hidden">
+                <LanguageSwitcher />
+              </div>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 rounded-md text-text hover:bg-gray-100 flex-shrink-0"
+              >
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
 
           {/* Mobile Navigation */}
@@ -144,6 +156,12 @@ const Header: React.FC = () => {
                 >
                   {t('nav.location')}
                 </button>
+                
+                {/* Language Switcher in Mobile Menu */}
+                <div className="py-2">
+                  <LanguageSwitcher />
+                </div>
+                
                 <a
                   href={formatPhoneLink(CONTACT_INFO.phone)}
                   className={cn(COMMON_STYLES.button.primary, 'text-center mt-4 flex items-center justify-center space-x-2 py-3')}
@@ -160,4 +178,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

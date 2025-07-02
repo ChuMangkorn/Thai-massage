@@ -1,30 +1,42 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { ArrowDown, Phone, MapPin } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { CONTACT_INFO, COMMON_STYLES, BUSINESS_HOURS } from '../constants';
-import { scrollToSection, formatPhoneLink, cn } from '../utils';
+import { formatPhoneLink, cn } from '../utils';
 import OptimizedImage from './OptimizedImage';
-
+import thaiMassageBackground from '../assets/images/thai-massage.webp';
 const Hero: React.FC = () => {
   const { t, fontClass } = useLanguage();
+  
+  // Simple scroll handler
+  const handleScrollToServices = () => {
+    const element = document.getElementById('services');
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative w-screen h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 w-full h-full z-0">
         <OptimizedImage
-          src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080"
+          src={thaiMassageBackground}
           alt="Thai Massage Background"
-          className="w-full h-full"
+          className="w-full h-full object-cover object-center"
           loading="eager"
           sizes="100vw"
+          priority
         />
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 w-full h-full bg-black/40"></div>
       </div>
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-        <div className="animate-fade-in">
+        <div className="animate-fade-in hero-transition">
           <h1 className={cn('text-4xl md:text-6xl lg:text-7xl font-bold mb-6', fontClass)}>
             {t('hero.title')}
           </h1>
@@ -63,8 +75,9 @@ const Hero: React.FC = () => {
 
       {/* Scroll Indicator */}
       <button
-        onClick={() => scrollToSection('services')}
+        onClick={handleScrollToServices}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce hover:text-primary transition-colors"
+        aria-label="Scroll to services section"
       >
         <ArrowDown className="w-8 h-8" />
       </button>
@@ -77,4 +90,4 @@ const Hero: React.FC = () => {
   );
 };
 
-export default Hero;
+export default memo(Hero);

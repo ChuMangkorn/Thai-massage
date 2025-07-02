@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, ErrorInfo, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
 import { errorTracker } from '../utils/errorTracking';
 
@@ -28,7 +28,7 @@ class ErrorBoundary extends Component<Props, State> {
     errorTracker.captureError({
       message: error.message,
       stack: error.stack,
-      componentStack: errorInfo.componentStack,
+      componentStack: errorInfo.componentStack || undefined, // Ensure it's string or undefined
       timestamp: Date.now(),
       url: window.location.href,
       userAgent: navigator.userAgent,

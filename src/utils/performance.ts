@@ -42,7 +42,8 @@ export class PerformanceMonitor {
         // FID Observer
         const fidObserver = new PerformanceObserver((list) => {
           for (const entry of list.getEntries()) {
-            this.metrics.fid = entry.processingStart - entry.startTime;
+            const fidEntry = entry as PerformanceEventTiming;
+            this.metrics.fid = fidEntry.processingStart - fidEntry.startTime;
           }
         });
         fidObserver.observe({ entryTypes: ['first-input'] });

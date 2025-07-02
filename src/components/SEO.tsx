@@ -46,7 +46,6 @@ const SEO: React.FC<SEOProps> = ({
     "description": siteDescription,
     "url": "https://leelawadee.com",
     "telephone": CONTACT_INFO.phone,
-    "email": CONTACT_INFO.email,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "1-16-9 Shukugo",

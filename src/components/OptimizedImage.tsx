@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, memo, useMemo } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils';
 
@@ -58,14 +58,24 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       .join(', ');
   };
 
-  // Generate optimized src with modern formats
+  // Generate optimized src with modern formats (AVIF/WebP fallback)
   const getOptimizedSrc = useCallback((baseSrc: string, targetWidth?: number) => {
     if (!baseSrc.includes('pexels.com')) return baseSrc;
     
     const w = targetWidth || width || 1920;
     const h = height ? `&h=${height}` : '';
     
-    // Add modern format support and better compression
+    // Prioritize AVIF for better compression, fallback to WebP
+    return `${baseSrc}?auto=compress&cs=tinysrgb&fit=crop&w=${w}${h}&q=${quality}&fm=avif`;
+  }, [width, height, quality]);
+
+  // Generate WebP fallback source
+  const getWebPSrc = useCallback((baseSrc: string, targetWidth?: number) => {
+    if (!baseSrc.includes('pexels.com')) return baseSrc;
+    
+    const w = targetWidth || width || 1920;
+    const h = height ? `&h=${height}` : '';
+    
     return `${baseSrc}?auto=compress&cs=tinysrgb&fit=crop&w=${w}${h}&q=${quality}&fm=webp`;
   }, [width, height, quality]);
 
@@ -82,6 +92,10 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       setCurrentSrc(getOptimizedSrc(src, width));
     }
   }, [src, width, priority, isIntersecting, getOptimizedSrc]);
+
+  // Memoize sources for picture element
+  const avifSrc = useMemo(() => getOptimizedSrc(src, width), [getOptimizedSrc, src, width]);
+  const webpSrc = useMemo(() => getWebPSrc(src, width), [getWebPSrc, src, width]);
 
   const handleLoad = () => {
     setIsLoaded(true);
@@ -173,25 +187,30 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         />
       )}
       
-      {/* Main image */}
+      {/* Main image with modern format support */}
       {currentSrc && (
-        <img
-          ref={imgRef}
-          src={currentSrc}
-          srcSet={generateSrcSet(src)}
-          sizes={sizes}
-          alt={alt}
-          width={width}
-          height={height}
-          className={cn(
-            'w-full h-full object-cover transition-opacity duration-300',
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          )}
-          onLoad={handleLoad}
-          onError={handleError}
-          loading={loading}
-          decoding="async"
-        />
+        <picture>
+          <source srcSet={avifSrc} type="image/avif" />
+          <source srcSet={webpSrc} type="image/webp" />
+          <img
+            ref={imgRef}
+            src={currentSrc}
+            srcSet={generateSrcSet(src)}
+            sizes={sizes}
+            alt={alt}
+            width={width}
+            height={height}
+            className={cn(
+              'w-full h-full object-cover transition-opacity duration-300',
+              isLoaded ? 'opacity-100' : 'opacity-0'
+            )}
+            onLoad={handleLoad}
+            onError={handleError}
+            loading={loading}
+            decoding="async"
+            fetchPriority={priority ? 'high' : 'auto'}
+          />
+        </picture>
       )}
       
       {/* Loading indicator */}
@@ -204,4 +223,4 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   );
 };
 
-export default OptimizedImage;
+export default memo(OptimizedImage);

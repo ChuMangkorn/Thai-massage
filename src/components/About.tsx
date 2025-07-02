@@ -4,6 +4,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { COMMON_STYLES } from '../constants';
 import { cn } from '../utils';
 import OptimizedImage from './OptimizedImage';
+import AboutImage from '../assets/images/about.webp';
 
 const About: React.FC = () => {
   const { t, fontClass } = useLanguage();
@@ -90,7 +91,7 @@ const About: React.FC = () => {
           <div className="relative">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <OptimizedImage
-                src="https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src={AboutImage}
                 alt="Thai Massage Interior"
                 className="w-full h-96 transition-transform duration-700 hover:scale-110"
                 loading="lazy"

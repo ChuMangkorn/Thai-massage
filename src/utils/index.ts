@@ -12,9 +12,31 @@ export const getFontClass = (language: string): string => {
  * Scroll to section with smooth behavior
  */
 export const scrollToSection = (sectionId: string): void => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
+  try {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      // Calculate header height for offset
+      const header = document.querySelector('header') as HTMLElement;
+      const headerHeight = header ? header.offsetHeight : 0;
+      const topInfoBar = document.querySelector('.bg-secondary') as HTMLElement;
+      const topInfoHeight = topInfoBar ? topInfoBar.offsetHeight : 0;
+      const totalOffset = headerHeight + topInfoHeight;
+      
+      // Use requestAnimationFrame for smoother scrolling
+      requestAnimationFrame(() => {
+        const elementPosition = element.offsetTop - totalOffset;
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      });
+    }
+  } catch (error) {
+    // Fallback scroll without offset
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 };
 

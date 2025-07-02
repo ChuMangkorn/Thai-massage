@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, memo } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import LoadingSpinner from './LoadingSpinner';
 import ErrorBoundary from './ErrorBoundary';
@@ -43,4 +43,4 @@ const LazySection: React.FC<LazySectionProps> = ({
   );
 };
 
-export default LazySection;
+export default memo(LazySection);

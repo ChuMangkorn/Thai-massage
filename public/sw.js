@@ -1,12 +1,31 @@
-const CACHE_NAME = 'thai-massage-leelawadee-v1';
-const STATIC_CACHE = 'static-v1';
-const DYNAMIC_CACHE = 'dynamic-v1';
-const IMAGE_CACHE = 'images-v1';
+const CACHE_NAME = 'thai-massage-2025-v2';
+const STATIC_CACHE = 'static-2025-v2';
+const DYNAMIC_CACHE = 'dynamic-2025-v2';
+const IMAGE_CACHE = 'images-2025-v2';
+const FONT_CACHE = 'fonts-2025-v2';
+const API_CACHE = 'api-2025-v2';
 
-// Assets to cache immediately - only cache what exists
+// Critical assets for instant loading - 2025 optimized
 const STATIC_ASSETS = [
   '/',
   '/manifest.json'
+];
+
+// Image assets with format variants
+const IMAGE_ASSETS = [
+  '/src/assets/images/thai-massage.webp',
+  '/src/assets/images/thai-massage.avif',
+  '/src/assets/images/logo.webp',
+  '/src/assets/images/logo.avif',
+  '/src/assets/images/face.webp',
+  '/src/assets/images/foot.webp',
+  '/src/assets/images/oil.webp'
+];
+
+// Font assets for preloading
+const FONT_ASSETS = [
+  'https://fonts.gstatic.com/s/notosansjp/v52/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFBEj75vY0rw-oME.woff2',
+  'https://fonts.gstatic.com/s/notosansthai/v20/iJWnBXeUZi_OHPqn4wq6hQ2_hbJ1xyN9wd43SofNWcd1MKVQt_So_9CdU5RtpzF-QRvn.woff2'
 ];
 
 // Network-first resources (always try network first)
@@ -26,40 +45,66 @@ const CACHE_FIRST = [
   '.js'
 ];
 
-// Install event - cache static assets
+// Install event - cache critical assets with advanced strategy
 self.addEventListener('install', (event) => {
-  console.log('Service Worker: Installing...');
+  console.log('Service Worker 2025: Installing with advanced caching...');
   
   event.waitUntil(
-    caches.open(STATIC_CACHE)
-      .then(async (cache) => {
-        console.log('Service Worker: Caching static assets');
-        
-        // Cache assets individually to avoid single failure stopping all caching
+    Promise.all([
+      // Cache static assets
+      caches.open(STATIC_CACHE).then(async (cache) => {
         const cachePromises = STATIC_ASSETS.map(async (asset) => {
           try {
-            const response = await fetch(asset);
+            const response = await fetch(asset, { cache: 'no-cache' });
             if (response.ok) {
               await cache.put(asset, response);
-              console.log(`Service Worker: Cached ${asset}`);
-            } else {
-              console.warn(`Service Worker: Failed to cache ${asset} - ${response.status}`);
+              console.log(`✓ Cached static: ${asset}`);
             }
           } catch (error) {
-            console.warn(`Service Worker: Error caching ${asset}:`, error);
+            console.warn(`⚠ Failed to cache static: ${asset}`);
           }
         });
-        
         await Promise.allSettled(cachePromises);
-        console.log('Service Worker: Static assets caching completed');
+      }),
+      
+      // Cache images with format detection
+      caches.open(IMAGE_CACHE).then(async (cache) => {
+        const imagePromises = IMAGE_ASSETS.map(async (asset) => {
+          try {
+            const response = await fetch(asset, { cache: 'force-cache' });
+            if (response.ok) {
+              await cache.put(asset, response);
+              console.log(`✓ Cached image: ${asset}`);
+            }
+          } catch (error) {
+            // Silent failure for format variants that may not exist
+          }
+        });
+        await Promise.allSettled(imagePromises);
+      }),
+      
+      // Cache fonts
+      caches.open(FONT_CACHE).then(async (cache) => {
+        const fontPromises = FONT_ASSETS.map(async (asset) => {
+          try {
+            const response = await fetch(asset, { 
+              cache: 'force-cache',
+              mode: 'cors'
+            });
+            if (response.ok) {
+              await cache.put(asset, response);
+              console.log(`✓ Cached font: ${asset}`);
+            }
+          } catch (error) {
+            console.warn(`⚠ Failed to cache font: ${asset}`);
+          }
+        });
+        await Promise.allSettled(fontPromises);
       })
-      .then(() => {
-        console.log('Service Worker: Installed successfully');
-        return self.skipWaiting();
-      })
-      .catch((error) => {
-        console.error('Service Worker: Installation failed', error);
-      })
+    ]).then(() => {
+      console.log('🚀 Service Worker 2025: Installation completed');
+      return self.skipWaiting();
+    })
   );
 });
 

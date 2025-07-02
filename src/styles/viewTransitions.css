@@ -1,0 +1,109 @@
+/**
+ * View Transitions API Styles for 2025 Performance
+ * Source: View Transitions API specification & best practices
+ */
+
+/* Enable view transitions for smooth navigation */
+@view-transition {
+  navigation: auto;
+}
+
+/* Scroll transition optimization */
+::view-transition-old(scroll-transition) {
+  animation: slideOut 0.3s ease-out;
+}
+
+::view-transition-new(scroll-transition) {
+  animation: slideIn 0.3s ease-in;
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero section view transition */
+::view-transition-old(hero-content) {
+  animation: fadeOut 0.4s ease-out;
+}
+
+::view-transition-new(hero-content) {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Component transition groups */
+.hero-transition {
+  view-transition-name: hero-content;
+}
+
+.nav-transition {
+  view-transition-name: nav-transition;
+}
+
+/* Performance optimized transitions */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.1s;
+  }
+}
+
+/* Advanced transition for large screens */
+@media (min-width: 1024px) {
+  ::view-transition-old(hero-content) {
+    animation: slideOutLarge 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  ::view-transition-new(hero-content) {
+    animation: slideInLarge 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@keyframes slideOutLarge {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(-30px);
+  }
+}
+
+@keyframes slideInLarge {
+  from {
+    opacity: 0;
+    transform: scale(1.05) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
