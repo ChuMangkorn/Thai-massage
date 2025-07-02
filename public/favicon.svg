@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .gold { fill: #B8860B; }
+      .text { font-family: serif; font-size: 24px; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Simplified lotus petals -->
+  <path class="gold" d="M16 4 C12 6, 8 10, 12 14 C14 12, 16 8, 16 4 Z"/>
+  <path class="gold" d="M16 4 C20 6, 24 10, 20 14 C18 12, 16 8, 16 4 Z"/>
+  <path class="gold" d="M8 16 C10 12, 14 8, 18 12 C16 14, 12 16, 8 16 Z"/>
+  <path class="gold" d="M24 16 C22 12, 18 8, 14 12 C16 14, 20 16, 24 16 Z"/>
+  
+  <!-- Center L -->
+  <text x="16" y="22" text-anchor="middle" class="gold text">L</text>
+</svg>

@@ -1,0 +1,114 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "services": "施術メニュー",
+    "about": "当店について",
+    "location": "アクセス",
+    "contact": "電話予約"
+  },
+  "hero": {
+    "title": "タイマッサージ・リラワディ",
+    "subtitle": "本格的なタイ古式で心身ともにリラックス",
+    "cta": "今すぐ電話予約"
+  },
+  "services": {
+    "title": "施術メニュー",
+    "subtitle": "伝統的なタイの技法で最高のリラクゼーション体験を",
+    "traditional": {
+      "name": "タイ古式ボディケア",
+      "description": "『二人で行うヨガ』とも呼ばれるタイ伝統のストレッチで、心身を深く整えます。",
+      "30min": "30分コース",
+      "60min": "60分コース",
+      "90min": "90分コース",
+      "120min": "120分コース"
+    },
+    "oil": {
+      "name": "アロマオイルトリートメント",
+      "description": "天然アロマオイルを使用し、心地よい圧で全身を優しくケアします。",
+      "60min": "60分コース",
+      "90min": "90分コース",
+      "120min": "120分コース"
+    },
+    "face": {
+      "name": "フェイシャル・トリートメント",
+      "description": "天然成分を使用した贅沢なフェイシャルケアで、お肌を美しく整えます。",
+      "60min": "60分コース"
+    },
+    "foot": {
+      "name": "フット・リフレクソロジー",
+      "description": "足裏の反射区を刺激し、全身のバランスを整えリラックスへと導きます。",
+      "30min": "30分コース",
+      "60min": "60分コース"
+    },
+    "pricing": {
+      "60min": "¥4,500",
+      "90min": "¥6,500",
+      "120min": "¥8,500",
+      "30min": "¥2,500"
+    },
+    "cta": {
+      "button": "今すぐ電話予約",
+      "bookService": "このサービスを電話予約",
+      "disclaimer": "※当店のリラクゼーションは治療を目的とした医療行為ではありません。",
+      "contactTitle": "お電話でご予約ください",
+      "contactSubtitle": "お気軽にお電話でお問い合わせ・ご予約ください"
+    }
+  },
+  "about": {
+    "title": "当店について",
+    "subtitle": "本場タイの伝統的な技術",
+    "description": "リラワディでは、タイ本場で修行を積んだ熟練の施術者が、2500年の歴史を持つタイの伝統的なケアを提供します。ヨガやストレッチングを組み合わせた独特の手技で、心身のバランスを整え、深いリラクゼーションを目指します。",
+    "features": {
+      "authentic": {
+        "title": "本格的な技術",
+        "description": "タイの認定資格を持つ施術者による本格的なケア"
+      },
+      "experience": {
+        "title": "豊富な経験",
+        "description": "経験豊富な施術者が在籍"
+      },
+      "environment": {
+        "title": "癒しの空間",
+        "description": "タイの雰囲気を再現した落ち着いた空間"
+      }
+    },
+    "statistics": {
+      "history": "年の歴史",
+      "experience": "年の経験",
+      "customers": "満足のお客様",
+      "naturalOils": "天然オイル"
+    },
+    "testimonial": {
+      "text": "長年の肩の緊張が、一度の施術で驚くほど和らぎました。施術者の技術の高さと心配りに感動しました。また必ず来ます。",
+      "author": "田中様 (40代女性)"
+    }
+  },
+  "location": {
+    "title": "アクセス・お問い合わせ",
+    "addressTitle": "住所",
+    "phoneTitle": "電話番号",
+    "hoursTitle": "営業時間",
+    "parkingTitle": "駐車場",
+    "directionsTitle": "アクセス",
+    "googleMaps": "Google Maps",
+    "address": "〒321-0945 栃木県宇都宮市宿郷1丁目16-9",
+    "phone": "028-611-3638",
+    "hours": {
+      "title": "営業時間",
+      "weekdays": "13:00 - 23:00",
+      "weekends": "13:00 - 23:00",
+      "closed": "定休日はGoogle Mapsでご確認ください"
+    },
+    "checkGoogleMaps": "Google Mapsで定休日・営業時間の変更を確認",
+    "parking": "駐車場3台完備",
+    "directions": "JR宇都宮駅から徒歩12分",
+    "phoneBooking": "電話予約",
+    "openMap": "地図を開く",
+    "confirmBeforeVisit": "ご予約前に営業状況をご確認いただくか、お電話でお問い合わせください"
+  },
+  "footer": {
+    "copyright": "© 2025 タイリラクゼーション・リラワディ. All rights reserved.",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約"
+  }
+}

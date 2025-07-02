@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm test)",
+      "Bash(npm run build:*)",
+      "Bash(rg:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(ls:*)",
+      "Bash(rm:*)",
+      "Bash(npm run deploy:*)",
+      "Bash(npm run dev:*)",
+      "Bash(gh pr:*)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm ls:*)",
+      "Bash(npm run:*)",
+      "Bash(node:*)",
+      "Bash(npx vite-bundle-analyzer:*)",
+      "Bash(pkill:*)",
+      "Bash(grep:*)",
+      "Bash(npx serve:*)",
+      "Bash(git restore:*)",
+      "Bash(git reset:*)",
+      "Bash(cp:*)",
+      "Bash(find:*)",
+      "Bash(npx tsc:*)"
+    ],
+    "deny": []
+  }
+}

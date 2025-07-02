@@ -1,0 +1,133 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "location": "Location",
+    "contact": "Call Now"
+  },
+  "hero": {
+    "title": "Thai Massage Leelawadee",
+    "subtitle": "Experience authentic Thai-style body care for deep relaxation.",
+    "cta": "Call Now"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Experience ultimate relaxation with our traditional Thai techniques",
+    "traditional": {
+      "name": "Traditional Thai Body Care",
+      "description": "Often called \"two-person yoga,\" this traditional Thai stretching realigns the body and mind.",
+      "30min": "30min Course",
+      "60min": "60min Course",
+      "90min": "90min Course",
+      "120min": "120min Course"
+    },
+    "oil": {
+      "name": "Aroma Oil Treatment",
+      "description": "A gentle treatment using natural aromatic oils to care for the entire body.",
+      "60min": "60min Course",
+      "90min": "90min Course",
+      "120min": "120min Course"
+    },
+    "face": {
+      "name": "Facial Treatment",
+      "description": "Luxurious facial care using natural ingredients for beautiful and healthy skin.",
+      "60min": "60min Course"
+    },
+    "foot": {
+      "name": "Foot Reflexology",
+      "description": "Stimulate foot reflex zones to promote overall well-being and relaxation.",
+      "30min": "30min Course",
+      "60min": "60min Course"
+    },
+    "pricing": {
+      "60min": "¥4,500",
+      "90min": "¥6,500",
+      "120min": "¥8,500",
+      "30min": "¥2,500"
+    },
+    "cta": {
+      "button": "Call Now to Book",
+      "bookService": "Call to Book This Service",
+      "disclaimer": "*This service is for relaxation and beauty purposes, not for medical treatment.",
+      "contactTitle": "Contact us to make a reservation",
+      "contactSubtitle": "Call us to inquire and make a reservation"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Authentic Thai Techniques",
+    "description": "At Leelawadee, our experienced practitioners, trained in Thailand, offer traditional Thai care with a 2,500-year history. Through unique techniques combining yoga and stretching, we aim to balance your mind and body, promoting deep relaxation.",
+    "features": {
+      "authentic": {
+        "title": "Authentic Techniques",
+        "description": "Authentic care by practitioners with Thai-certified qualifications"
+      },
+      "experience": {
+        "title": "Rich Experience",
+        "description": "Experienced practitioners with extensive backgrounds"
+      },
+      "environment": {
+        "title": "Healing Space",
+        "description": "A calm interior recreating a traditional Thai atmosphere"
+      }
+    },
+    "statistics": {
+      "history": "Years of History",
+      "experience": "Years of Experience",
+      "customers": "Satisfied Customers",
+      "naturalOils": "Natural Oils"
+    },
+    "testimonial": {
+      "text": "The chronic tension in my shoulders felt wonderfully relieved after just one session. I was impressed by the practitioner's skill and care. I will definitely be back.",
+      "author": "Ms. Tanaka (Female, 40s)"
+    }
+  },
+  "location": {
+    "title": "Location & Contact",
+    "addressTitle": "Address",
+    "phoneTitle": "Phone Number",
+    "hoursTitle": "Business Hours",
+    "parkingTitle": "Parking",
+    "directionsTitle": "Access",
+    "googleMaps": "Google Maps",
+    "address": "1-16-9 Shukugo, Utsunomiya, Tochigi 321-0945",
+    "phone": "028-611-3638",
+    "hours": {
+      "title": "Business Hours",
+      "weekdays": "13:00 - 23:00",
+      "weekends": "13:00 - 23:00",
+      "closed": "Please check Google Maps for holidays"
+    },
+    "checkGoogleMaps": "Check Google Maps for holidays and schedule changes",
+    "parking": "3 parking spaces available",
+    "directions": "12 minutes walk from JR Utsunomiya Station",
+    "phoneBooking": "Phone Booking",
+    "openMap": "Open Map",
+    "confirmBeforeVisit": "Please check our business status before visiting or call us for confirmation"
+  },
+  "footer": {
+    "copyright": "© 2025 Thai Massage Leelawadee. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "pwa": {
+    "installTitle": "Install App",
+    "installSubtitle": "Get the full experience",
+    "installDescription": "Install our app for faster access, offline support, and a better experience.",
+    "install": "Install",
+    "installing": "Installing...",
+    "share": "Share",
+    "updateAvailable": "App update available",
+    "update": "Update",
+    "offline": "You are currently offline",
+    "installInstructions": "Install Instructions"
+  },
+  "common": {
+    "close": "Close",
+    "later": "Later",
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry"
+  }
+}
