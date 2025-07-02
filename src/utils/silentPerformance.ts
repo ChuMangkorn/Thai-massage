@@ -25,7 +25,7 @@ export const createSilentPerformanceMonitor = (): (() => void) => {
   // LCP - Widely supported and stable
   try {
     const lcpObserver = new PerformanceObserver(() => {
-      // ... (rest of the observer logic)
+      
     });
     lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
     observers.push(lcpObserver);
@@ -36,7 +36,7 @@ export const createSilentPerformanceMonitor = (): (() => void) => {
   // CLS - Widely supported and stable
   try {
     const clsObserver = new PerformanceObserver(() => {
-       // ... (rest of the observer logic)
+       
     });
     clsObserver.observe({ entryTypes: ['layout-shift'] });
     observers.push(clsObserver);
@@ -47,7 +47,7 @@ export const createSilentPerformanceMonitor = (): (() => void) => {
   // FID - Stable and widely supported (better than INP for compatibility)
   try {
     const fidObserver = new PerformanceObserver(() => {
-       // ... (rest of the observer logic)
+       
     });
     fidObserver.observe({ entryTypes: ['first-input'] });
     observers.push(fidObserver);
@@ -58,7 +58,7 @@ export const createSilentPerformanceMonitor = (): (() => void) => {
   // FCP - Stable and widely supported
   try {
     const fcpObserver = new PerformanceObserver(() => {
-       // ... (rest of the observer logic)
+       
     });
     fcpObserver.observe({ entryTypes: ['paint'] });
     observers.push(fcpObserver);

@@ -284,9 +284,5 @@ export const initializePerformanceOptimizations2025 = () => {
     if (imageLoader) {
       imageLoader.disconnect();
     }
-    // The flag should not be reset on cleanup in StrictMode
-    // if (typeof window !== 'undefined') {
-    //   (window as any).performanceOptimizationsInitialized = false;
-    // }
   };
 };

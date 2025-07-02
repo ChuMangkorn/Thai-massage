@@ -24,37 +24,26 @@ function App() {
   }, [fontClass]);
 
   React.useEffect(() => {
-    // 🚀 2025 Ultra-Fast Performance Optimizations
-    
-    // Preload the LCP image with high priority
     const preloadLink = document.createElement('link');
     preloadLink.rel = 'preload';
     preloadLink.as = 'image';
-    preloadLink.href = '/src/assets/images/thai-massage.webp'; // Adjust if format changes
+    preloadLink.href = '/src/assets/images/thai-massage.webp';
     preloadLink.setAttribute('fetchpriority', 'high');
     document.head.appendChild(preloadLink);
 
-    // ⚡ Critical CSS injection for instant first paint
     injectCriticalCSS();
     
-    // 🚀 Zero-error performance optimization for 2025
-    
-    // ⚡ Completely silent performance optimization
-    
-    // Silent critical resource preloading (zero errors, zero warnings)
     silentImagePreload('/src/assets/images/thai-massage.webp');
     silentImagePreload('/src/assets/images/logo.webp');
     silentImagePreload('/src/assets/images/face.webp');
     silentImagePreload('/src/assets/images/foot.webp');
     silentImagePreload('/src/assets/images/oil.webp');
     
-    // Enable latest 2025 web performance APIs
-    enableSpeculativeLoading();    // Instant navigation with Speculation Rules
-    optimizePaintHolding();        // Smooth visual transitions
-    initializeHTTP2Push();         // HTTP/2 server push simulation
-    const cleanupPerformance = initializePerformanceOptimizations2025(); // React 19+ & Core Web Vitals 2025
+    enableSpeculativeLoading();
+    optimizePaintHolding();
+    initializeHTTP2Push();
+    const cleanupPerformance = initializePerformanceOptimizations2025();
     
-    // Silent performance monitoring (zero console errors)
     const cleanupSilentMonitor = createSilentPerformanceMonitor();
 
     const loadAnalytics = async () => {
@@ -66,14 +55,12 @@ function App() {
       }
     };
     
-    // Load analytics after page is interactive
     if (document.readyState === 'complete') {
       loadAnalytics();
     } else {
       window.addEventListener('load', loadAnalytics, { once: true });
     }
 
-    // Cleanup function to be called on component unmount
     return () => {
       cleanupPerformance();
       cleanupSilentMonitor();

@@ -1,6 +1,7 @@
-@import "tailwindcss";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-/* Fix scroll behavior and full screen */
 html {
   height: auto !important;
   width: 100% !important;

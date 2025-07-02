@@ -2,8 +2,6 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Lazy load translations for better performance - avoid duplicate static imports
-// Source: i18next performance best practices - https://www.i18next.com/overview/performance
 const loadTranslations = async (language: string) => {
   try {
     const translations = await import(`./locales/${language}.json`);
@@ -14,7 +12,6 @@ const loadTranslations = async (language: string) => {
   }
 };
 
-// Import only once - avoid dual import/require pattern
 import jaTranslations from './locales/ja.json';  
 import thTranslations from './locales/th.json';
 import enTranslations from './locales/en.json';
