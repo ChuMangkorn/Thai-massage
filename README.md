@@ -266,7 +266,7 @@ npm run deploy          # Full deployment preparation
 - **📍 Address**: 321-0945 Tochigi, Utsunomiya, Shukugo 1-16-9
 - **📞 Phone**: 028-611-3638
 - **⏰ Hours**: 13:00 - 23:00 (Daily)
-- **🌐 Website**: https://leelawadee.com
+- **🌐 Website**: [https://leelawadee.com](https://leelawadee-seven.vercel.app/)
 
 ## 🎨 **Design System**
 
